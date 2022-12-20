@@ -20,4 +20,4 @@ sequenceDiagram
     server-->>browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
     
     note over browser: browser executes the event handler that renders notes to display
-    ```
+```
