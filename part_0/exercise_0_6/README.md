@@ -2,18 +2,11 @@
 sequenceDiagram
     participant browser
     participant server
-    browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
-    server-->>browser: HTML-code
-    browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
-    server-->>browser: main.css
-    browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
-    server-->>browser: spa.js
 
-    note over browser: browser starts executing js-code that requests JSON data from server
-
-    browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
-    server-->>browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
-    note over browser: browser executes the event handler that renders notes to display
-    browser->>server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
-    server-->>browser: favicon.ico
+    note over browser: Browser redraws notes list
+    note over browser, server: browser sends note as a JSON message
+    browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    
+    note over server: server decodes JSON and saves note
+    server-->>browser: Response 201 Created
 ```
